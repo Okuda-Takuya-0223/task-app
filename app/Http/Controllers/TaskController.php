@@ -3,15 +3,56 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
-use Illuminate\Http\Request;
+use App\Http\Requests\Request;
 
 class TaskController extends Controller
+
 {
-  // showページへ移動
-    public function show($task)
+    public function index()
     {
-        $memo = Memo::find($task);
-        return view('task.show', ['task' => $task]);
+        $tasks = Task::all();
+        return view('tasks.index', ['tasks' => $tasks]);
     }
-}
+
+    public function store(Request $request)
+    {
+        $task = new Task;
+
+        $task->title = $request->title;
+        $task->body = $request->body;
+        $task->save();
+
+        //登録したらindexを再読み込み
+        return redirect('/tasks');
+    }
+
+    public function show($id)
+    {
+        $task = Task::find($id);
+        return view('tasks.show', ['task' => $task]);
+    }
+    public function edit($id)
+    {
+        $task = Task::find($id);
+        return view('tasks.edit', ['task' => $task]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $task = Task::find($id);
+
+        $task->title = $request->title;
+        $task->body = $request->body;
+        $task->save();
+
+        //登録したらindexを再読み込み
+        return redirect('/tasks');
+    }
+    public function destroy($id)
+    {
+        $task = Task::find($id);
+        $task->DB::delete();
+
+        return redirect(route('tasks.index'));
+    }
 }

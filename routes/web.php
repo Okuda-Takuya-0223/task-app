@@ -8,4 +8,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('memos', TaskController::class);
+Route::resource('tasks', TaskController::class);
