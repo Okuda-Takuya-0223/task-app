@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+.index-button,
+.show-button,
+.edit-button {
+    display: flex;
+}
+
+
+.index-button>*:not(:last-child) {
+    margin-right: 10px;
+}
+
+.error {
+    color: red;
+}
+
+.value{
+    margin-bottom: 10px;
+}
