@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>task index</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
+
 <body>
     <h1>タスク一覧</h1>
     @foreach ($tasks as $task)
@@ -31,8 +33,8 @@
             <label for="body">本文</label><br>
             <textarea name="body" id="body">{{ old('body') }}</textarea>
         </p>
-        <input type="button" value="Create Task" onclick="location.href='{{ route('tasks.create') }}'">
-
+        <input type="submit" value="登録">
     </form>
 </body>
+
 </html>
